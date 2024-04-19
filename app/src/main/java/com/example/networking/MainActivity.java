@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         RecyclerView view = findViewById(R.id.recycler_view);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
+
+        String url = "https://mobprog.webug.se/json-api?login=brom";
+        new JsonTask(this).execute(url);
     }
 
     @Override
