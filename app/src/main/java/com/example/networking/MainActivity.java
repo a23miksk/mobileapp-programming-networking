@@ -54,20 +54,26 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
                 JSONObject jsonObject = jsonArray.getJSONObject(i);
                 String name = jsonObject.optString("name", "Unknown");
                 String location = jsonObject.optString("location", "No location provided");
-                int size = jsonObject.optInt("size", 0); // size as height
+                int size = jsonObject.optInt("size", 0);
 
-                Mountain mountain = new Mountain(name, location, size);
+
+                JSONObject auxDataObject = jsonObject.getJSONObject("auxdata");
+                String imageLoc = auxDataObject.optString("img","");
+
+                Mountain mountain = new Mountain(name, location, size, imageLoc);
                 newMountains.add(mountain);
+                Log.d("Mountains", mountain.toString());
             }
 
 
             items.addAll(newMountains);
             adapter.notifyDataSetChanged();
 
+
         } catch (JSONException e) {
             Log.e("brom", "E:" + e.getMessage());
         }
-        Log.d("MainActivity", json);
+
     }
 
 }

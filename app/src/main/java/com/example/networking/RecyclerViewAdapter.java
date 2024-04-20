@@ -42,6 +42,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView title;
 
+
         ViewHolder(View itemView) {
             super(itemView);
             itemView.setOnClickListener(this);

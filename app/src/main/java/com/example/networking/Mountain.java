@@ -4,11 +4,23 @@ public class Mountain {
     private String name;
     private String location;
     private int height;
+    private String imageLoc;
 
-    public Mountain(String name, String location, int height) {
+    public Mountain(String name, String location, int height, String imageLoc) {
         this.name = name;
         this.location = location;
         this.height = height;
+        this.imageLoc = imageLoc;
+    }
+
+    @Override
+    public String toString() {
+        return "Mountain{" +
+                "name='" + name + '\'' +
+                ", location='" + location + '\'' +
+                ", height=" + height +
+                ", imageLoc='" + imageLoc + '\'' +
+                '}';
     }
 
     public Mountain(String name) {
@@ -37,5 +49,9 @@ public class Mountain {
 
     public void setHeight(int height) {
         this.height = height;
+    }
+
+    public void setImageLoc(String imageLoc) {
+        this.imageLoc = imageLoc;
     }
 }
