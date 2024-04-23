@@ -1,30 +1,28 @@
 package com.example.networking;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Mountain {
+    private String ID;
     private String name;
-    private String location;
-    private int height;
-    private String imageLoc;
+    @SerializedName("cost")
+    private int feet;
+    @SerializedName("size")
+    private int meter;
 
-    public Mountain(String name, String location, int height, String imageLoc) {
+    public Mountain(String ID, String name, int feet, int meter) {
+        this.ID = ID;
         this.name = name;
-        this.location = location;
-        this.height = height;
-        this.imageLoc = imageLoc;
+        this.feet = feet;
+        this.meter = meter;
     }
 
-    @Override
-    public String toString() {
-        return "Mountain{" +
-                "name='" + name + '\'' +
-                ", location='" + location + '\'' +
-                ", height=" + height +
-                ", imageLoc='" + imageLoc + '\'' +
-                '}';
+    public String getID() {
+        return ID;
     }
 
-    public Mountain(String name) {
-        this.name = name;
+    public void setID(String ID) {
+        this.ID = ID;
     }
 
     public String getName() {
@@ -35,23 +33,19 @@ public class Mountain {
         this.name = name;
     }
 
-    public String getLocation() {
-        return location;
+    public int getFeet() {
+        return feet;
     }
 
-    public void setLocation(String location) {
-        this.location = location;
+    public void setFeet(int feet) {
+        this.feet = feet;
     }
 
-    public int getHeight() {
-        return height;
+    public int getMeter() {
+        return meter;
     }
 
-    public void setHeight(int height) {
-        this.height = height;
-    }
-
-    public void setImageLoc(String imageLoc) {
-        this.imageLoc = imageLoc;
+    public void setMeter(int meter) {
+        this.meter = meter;
     }
 }

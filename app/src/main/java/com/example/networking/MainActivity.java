@@ -8,10 +8,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -46,33 +50,12 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
 
     @Override
     public void onPostExecute(String json) {
-        try {
-            JSONArray jsonArray = new JSONArray(json);
-            ArrayList<Mountain> newMountains = new ArrayList<>();
+        Gson gson = new Gson();
+        Type type = new TypeToken<ArrayList<Mountain>>() {}.getType();
+        ArrayList<Mountain> listOfMountains = gson.fromJson(json, type);
+        items.addAll(listOfMountains);
+        adapter.notifyDataSetChanged();
 
-            for (int i = 0; i < jsonArray.length(); i++) {
-                JSONObject jsonObject = jsonArray.getJSONObject(i);
-                String name = jsonObject.optString("name", "Unknown");
-                String location = jsonObject.optString("location", "No location provided");
-                int size = jsonObject.optInt("size", 0);
-
-
-                JSONObject auxDataObject = jsonObject.getJSONObject("auxdata");
-                String imageLoc = auxDataObject.optString("img","");
-
-                Mountain mountain = new Mountain(name, location, size, imageLoc);
-                newMountains.add(mountain);
-                Log.d("Mountains", mountain.toString());
-            }
-
-
-            items.addAll(newMountains);
-            adapter.notifyDataSetChanged();
-
-
-        } catch (JSONException e) {
-            Log.e("brom", "E:" + e.getMessage());
-        }
 
     }
 
